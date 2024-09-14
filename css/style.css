@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+body {
+  background-color: #f0f2f5;
+  font-family: 'Jua', sans-serif;
+  margin: 8px;
+}
+
+main {
+  background-color: #ffffff;
+  min-height: calc(100vh - 56px);
+  overflow-x: auto;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.todo-header {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid #e0e0e0;
+  width: calc(100% - 56px);
+  height: 80px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  color: #333333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.todo-header h1 {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.todo-header .fa-bars {
+  position: absolute;
+  right: 20px;
+  color: #777777;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.todo-header .fa-bars:hover {
+  color: #333333;
+}
+
+.todo-content {
+  display: flex;
+  padding-top: 60px;
+  margin-top: 30px;
+  min-width: max-content;
+  padding-bottom: 20px;
+}
+
+.todo-column {
+  margin-left: 20px;
+  width: 25rem;
+  height: fit-content;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.column-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  margin-bottom: 15px;
+}
+
+.title-name {
+  color: #333333;
+  font-weight: 600;
+}
+
+.fa-plus {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.fa-plus:hover {
+  transform: scale(1.1);
+  color: #2575fc;
+}
+
+.fa-xmark {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.fa-xmark:hover {
+  transform: scale(1.1);
+  color: red;
+}
+
+.todo-card {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  margin-top: 15px;
+  padding: 15px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.todo-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-title-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 10px;
+}
+
+.card-content {
+  color: #555555;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.card-date {
+  color: #777777;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.input-title,
+.input-content {
+  width: 70%;
+  padding: 7px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-title:focus,
+.input-content:focus {
+  border-color: #6a11cb;
+  box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+  outline: none;
+}
+
+.input-title::placeholder,
+.input-content::placeholder {
+  color: #aaa;
+}
+
+.input-title {
+  font-weight: 600;
+}
+
+.input-content {
+  font-weight: 400;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+}
+
+.modal .modal-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  max-width: 300px;
+}
+
+.modal-popup .button-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-wrapper button {
+  width: 47.5%;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm {
+  background-color: #6a11cb;
+  color: #ffffff;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.cancel {
+  background-color: #f5f5f5;
+  color: #333333;
+  border: 1px solid #ddd;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.confirm:hover {
+  background-color: #4a0f9b;
+}
+
+.cancel:hover {
+  background-color: #e0e0e0;
+  color: #000000;
+}
+
+.add-column {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 50px;
+  right: 50px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #6a11cb;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.add-column:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.add-column i {
+  text-align: center;
+  font-size: 1rem;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.add-column:hover i {
+  transform: rotate(225deg);
+}
+
+.add-column:hover i:hover {
+  color: #fff;
+}
+
+.modal-popup > .input-content {
+  width: calc(100% - 16px);
+  margin-bottom: 1.5rem;
+}

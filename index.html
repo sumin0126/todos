@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script type="module" src="./js/init.js" async></script>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <body>
+    <main class="todo-container">
+      <section class="todo-header">
+        <h1 class="header-center">To-Do List</h1>
+        <i class="fa-solid fa-bars"></i>
+      </section>
+
+      <section class="todo-content">
+        <!--첫번째 컬럼 -->
+        <div class="todo-column">
+          <section class="column-title">
+            <div class="title-name">해야할 일</div>
+            <div class="title-btn">
+              <!-- 더하기 버튼 -->
+              <i class="fa-solid fa-plus add-card"></i>
+              <!-- 엑스 버튼 -->
+              <i class="fa-solid fa-xmark delete-column"></i>
+            </div>
+          </section>
+        </div>
+        <!-- 두번째 컬럼 -->
+        <div class="todo-column">
+          <section class="column-title">
+            <div class="title-name">하고있는 일</div>
+            <div class="title-btn">
+              <!-- 더하기 버튼 -->
+              <i class="fa-solid fa-plus add-card"></i>
+              <!-- 엑스 버튼 -->
+              <i class="fa-solid fa-xmark delete-column"></i>
+            </div>
+          </section>
+        </div>
+        <!-- 세번째 컬럼 -->
+        <div class="todo-column">
+          <section class="column-title">
+            <div class="title-name">완료한 일</div>
+            <div class="title-btn">
+              <!-- 더하기 버튼 -->
+              <i class="fa-solid fa-plus add-card"></i>
+              <!-- 엑스 버튼 -->
+              <i class="fa-solid fa-xmark delete-column"></i>
+            </div>
+          </section>
+        </div>
+      </section>
+      <div class="add-column">
+        <i class="fa-solid fa-plus"></i>
+      </div>
+    </main>
+  </body>
+</html>
