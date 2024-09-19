@@ -29,13 +29,13 @@ export const addCardEvents = (card) => {
   card.querySelector('.card-content').addEventListener('dblclick', handleDoubleClick);
 };
 
+/**
+ * 카드 삭제 함수
+ */
 const openDeleteCardModal = (e) => {
   openConfirmModal(() => deleteCard(e), closeModal, '삭제', '취소');
 };
 
-/**
- * 카드 삭제 함수
- */
 export const deleteCard = (e) => {
   const cardTarget = e.target;
   cardTarget.closest('.todo-card').remove();

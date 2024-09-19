@@ -184,7 +184,7 @@ main {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 30px;
-  background: #ffffff;
+  background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   width: 80%;
@@ -263,4 +263,19 @@ main {
 .modal-popup > .input-content {
   width: calc(100% - 16px);
   margin-bottom: 1.5rem;
+}
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100vh;
+  background-color: lightgrey;
+  transition: 0.3s;
+  z-index: 5;
+}
+
+.nav-bar.active {
+  right: 0;
 }
