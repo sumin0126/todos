@@ -2,6 +2,13 @@ import { createNewCard } from './card.js';
 import { createNewColumn, openDeleteColumnModal } from './column.js';
 import { closeModal, openInputModal } from './modal.js';
 import { addColumnDragEvents } from './column.js';
+import {
+  getTodosFromLocalStorage,
+  setTodosToLocalStorage,
+  addNewColumnToLocalStorage,
+  deleteColumnFromLocalStorage,
+} from './storage.js';
+
 /* 새카드 생성해주는 이벤트 */
 const addBtns = document.querySelectorAll('.add-card');
 addBtns.forEach((btn) => btn.addEventListener('click', createNewCard));
