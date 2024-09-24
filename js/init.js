@@ -30,8 +30,24 @@ document
   .querySelector('.add-column')
   .addEventListener('click', () => openInputModal(handleConfirmClick, closeModal, '등록', '취소'));
 
+/**
+ * 네비게이션바 이벤트
+ */
 const navBar = document.querySelector('.nav-bar');
+const navBarBg = document.querySelector('.navbar-bg');
 
-document.querySelector('.fa-bars').addEventListener('click', () => {
+const handleNavBarOpenClick = () => {
   navBar.classList.add('active');
-});
+  navBarBg.classList.add('active');
+};
+
+const handleNavBarCloseClick = () => {
+  navBar.classList.remove('active');
+  navBarBg.classList.remove('active');
+};
+
+document.querySelector('.fa-bars').addEventListener('click', () => handleNavBarOpenClick());
+
+document.querySelector('.close-navbar').addEventListener('click', () => handleNavBarCloseClick());
+
+document.querySelector('.navbar-bg').addEventListener('click', () => handleNavBarCloseClick());
