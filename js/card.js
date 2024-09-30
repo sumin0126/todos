@@ -1,5 +1,6 @@
 import { generateCardTemplate } from './template.js';
 import { openConfirmModal, closeModal } from './modal.js';
+import { deleteCardFromLocalStorage, updateCardToLocalStorage } from './storage.js';
 
 const ENTER_KEY_CODE = 13;
 
@@ -37,8 +38,12 @@ const openDeleteCardModal = (e) => {
 };
 
 export const deleteCard = (e) => {
-  const cardTarget = e.target;
-  cardTarget.closest('.todo-card').remove();
+  const cardTarget = e.target.closest('.todo-card');
+  const columnName = cardTarget.closest('.todo-column').dataset.column;
+  const cardIndex = [...cardTarget.closest('.todo-column').querySelectorAll('.todo-card')].indexOf(cardTarget);
+  cardTarget.remove();
+
+  deleteCardFromLocalStorage(columnName, cardIndex);
 };
 
 /**
@@ -48,11 +53,19 @@ const handlePressInput = (e) => {
   if (e.keyCode === ENTER_KEY_CODE) {
     const targetClass = e.target.className;
     const targetValue = e.target.value;
+    const columnName = e.target.closest('.todo-column').dataset.column;
+    const cardIndex = [...e.target.closest('.todo-column').querySelectorAll('.todo-card')].indexOf(
+      e.target.closest('.todo-card')
+    );
 
     if (targetClass === 'input-title') {
       e.target.closest('.card-title-name').textContent = targetValue;
+      const newTitle = { title: targetValue };
+      updateCardToLocalStorage(columnName, cardIndex, newTitle);
     } else if (targetClass === 'input-content') {
       e.target.closest('.card-content').textContent = targetValue;
+      const newContent = { content: targetValue };
+      updateCardToLocalStorage(columnName, cardIndex, newContent);
     }
   }
 };
