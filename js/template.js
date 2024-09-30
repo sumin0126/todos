@@ -4,6 +4,7 @@
 export const generateColumnTemplate = (title) => {
   const newColumn = document.createElement('div');
   newColumn.setAttribute('class', 'todo-column');
+  newColumn.setAttribute('data-column', title);
 
   const columnTemplate = `
     <section class="column-title">
