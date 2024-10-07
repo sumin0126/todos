@@ -1,6 +1,11 @@
 import { generateCardTemplate } from './template.js';
 import { openConfirmModal, closeModal } from './modal.js';
-import { deleteCardFromLocalStorage, updateCardToLocalStorage } from './storage.js';
+import {
+  deleteCardFromLocalStorage,
+  updateCardToLocalStorage,
+  addNewCardToLocalStorage,
+  getTodosFromLocalStorage,
+} from './storage.js';
 
 const ENTER_KEY_CODE = 13;
 
@@ -14,9 +19,11 @@ export const createNewCard = (e) => {
 
   const cardTemplate = generateCardTemplate(koreanDate);
   const targetColumn = e.target.closest('.todo-column');
+  const columnName = targetColumn.dataset.column;
 
   targetColumn.appendChild(cardTemplate);
   addCardEvents(cardTemplate);
+  addNewCardToLocalStorage(columnName, koreanDate);
 };
 
 /**
@@ -24,8 +31,10 @@ export const createNewCard = (e) => {
  */
 export const addCardEvents = (card) => {
   card.querySelector('.delete-card').addEventListener('click', openDeleteCardModal);
-  card.querySelector('.input-title').addEventListener('keypress', handlePressInput);
-  card.querySelector('.input-content').addEventListener('keypress', handlePressInput);
+  card.querySelector('.input-title') &&
+    card.querySelector('.input-title').addEventListener('keypress', handlePressInput);
+  card.querySelector('.input-content') &&
+    card.querySelector('.input-content').addEventListener('keypress', handlePressInput);
   card.querySelector('.card-title-name').addEventListener('dblclick', handleDoubleClick);
   card.querySelector('.card-content').addEventListener('dblclick', handleDoubleClick);
 };

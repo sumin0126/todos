@@ -56,41 +56,4 @@ document.querySelector('.close-navbar').addEventListener('click', () => handleNa
 
 document.querySelector('.navbar-bg').addEventListener('click', () => handleNavBarCloseClick());
 
-const todos = {
-  '해야할 일': [
-    {
-      title: '강아지 산책1',
-      content: '산책 시키기',
-      date: '날짜',
-    },
-    {
-      title: '강아지 산책2',
-      content: '산책 시키기',
-      date: '날짜',
-    },
-
-    {
-      title: '강아지 산책3',
-      content: '산책 시키기',
-      date: '날짜',
-    },
-    {
-      title: '강아지 산책4',
-      content: '산책 시키기',
-      date: '날짜',
-    },
-  ],
-  '하고있는 일': [],
-  '완료한 일': [],
-};
-
-updateCardToLocalStorage('해야할 일', 1, {
-  title: '변경',
-  content: '변경 내용',
-  date: 날짜,
-});
-toddos['해야할 일'][1] = newCard;
-
-setTodosToLocalStorage(todos);
-deleteCardFromLocalStorage('해야할 일', 2);
 console.log(getTodosFromLocalStorage());
