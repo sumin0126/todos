@@ -2,6 +2,7 @@ import { createNewCard } from './card.js';
 import { generateColumnTemplate } from './template.js';
 import { openConfirmModal, closeModal } from './modal.js';
 import { dragStart, dragEnter, dragLeave, dragOver, dropCard } from './drag.js';
+import { deleteColumnFromLocalStorage, addNewColumnToLocalStorage } from './storage.js';
 
 /**
  *  컬럼 생성 함수
@@ -15,6 +16,7 @@ export const createNewColumn = (title) => {
   columnTemplate.querySelector('.delete-column').addEventListener('click', openDeleteColumnModal);
 
   addColumnDragEvents(columnTemplate);
+  addNewColumnToLocalStorage(title);
 };
 
 export const addColumnDragEvents = (column) => {
@@ -34,6 +36,8 @@ export const openDeleteColumnModal = (e) => {
  */
 export const deleteColumn = (e) => {
   const targetColumn = e.target.closest('.todo-column');
+  const columnName = targetColumn.dataset.column;
 
   targetColumn.remove();
+  deleteColumnFromLocalStorage(columnName);
 };
