@@ -58,21 +58,16 @@ export const addNewCardToLocalStorage = (columnName, date) => {
  *  카드 정보를 todos 로컬스토리지에서 삭제하는 함수
  */
 export const deleteCardFromLocalStorage = (columnName, cardIndex) => {
-  // todos 객체 가져오기
-  // 내가 지울 카드가 어느 컬럼에 있는지 알기
-  // 내가 지울 카드가 컬럼 값인 배열중에 몇 번째 인덱스에 있는지 알기
-  // 지운 새로운 todos 객체를 새로 저장
   const todos = getTodosFromLocalStorage();
   todos[columnName].splice(cardIndex, 1);
 
   setTodosToLocalStorage(todos);
 };
 
+/**
+ *  카드 정보를 수정하고 다시 todos 로컬스토리지에 저장하는 함수
+ */
 export const updateCardToLocalStorage = (columnName, cardIndex, cardData) => {
-  // todos 객체 가져오기
-  // 업데이트할 카드 정보 가져오기
-  // 카드 업데이트 하기
-  // 새로운 todos 객체를 새로 저장
   const todos = getTodosFromLocalStorage();
   todos[columnName][cardIndex] = { ...todos[columnName][cardIndex], ...cardData };
 

@@ -100,3 +100,34 @@ const handleDoubleClick = (e) => {
   // 엔터 키 입력 시 다시 텍스트로 변경
   inputField.addEventListener('keypress', handlePressInput);
 };
+
+/**
+ * todos 로컬스토리지에서 카드 정보를 받아와 화면에 그려주는 함수
+ * (화면을 새로고침해도 이전 데이터들이 안사라지고 남아있음)
+ */
+export const loadCardsFromLocalStorage = () => {
+  const todos = getTodosFromLocalStorage();
+
+  Object.entries(todos).forEach(([key, val]) => {
+    const targetColumn = [...document.querySelectorAll('.todo-column')].filter((res) => res.dataset.column === key);
+
+    val.forEach((card) => {
+      const title = card.title;
+      const content = card.content;
+      const date = card.date;
+
+      const newCard = generateCardTemplate(date);
+
+      if (title !== '') {
+        newCard.querySelector('.card-title-name').innerHTML = title;
+      }
+
+      if (content !== '') {
+        newCard.querySelector('.card-content').innerHTML = content;
+      }
+
+      targetColumn[0].appendChild(newCard);
+      addCardEvents(newCard);
+    });
+  });
+};

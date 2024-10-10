@@ -1,7 +1,6 @@
-import { createNewCard } from './card.js';
-import { createNewColumn, openDeleteColumnModal } from './column.js';
+import { createNewCard, loadCardsFromLocalStorage } from './card.js';
+import { createNewColumn, openDeleteColumnModal, addColumnDragEvents } from './column.js';
 import { closeModal, openInputModal } from './modal.js';
-import { addColumnDragEvents } from './column.js';
 import {
   getTodosFromLocalStorage,
   setTodosToLocalStorage,
@@ -57,3 +56,4 @@ document.querySelector('.close-navbar').addEventListener('click', () => handleNa
 document.querySelector('.navbar-bg').addEventListener('click', () => handleNavBarCloseClick());
 
 console.log(getTodosFromLocalStorage());
+loadCardsFromLocalStorage();
