@@ -1,3 +1,5 @@
+import { moveCardToLocalStorage, deleteCardFromLocalStorage } from './storage.js';
+
 let draggedCard = null; // 드래그한 카드를 저장할 전역 변수
 let lastTarget = null; // 마지막으로 드래그가 진입한 컬럼을 저장
 
@@ -34,6 +36,14 @@ export const dragOver = (e) => {
 // 드래그된 카드를 새로운 컬럼에 추가하고, 원래 컬럼에서 제거
 export const dropCard = (e) => {
   e.preventDefault();
+
+  const prevCol = draggedCard.closest('.todo-column');
+  const prevInd = [...prevCol.querySelectorAll('.todo-card')].findIndex((card) => card === draggedCard);
+
+  const title = draggedCard.querySelector('.card-title-name').textContent.trim() || '';
+  const content = draggedCard.querySelector('.card-content').textContent.trim() || '';
+  const date = draggedCard.querySelector('.card-date').textContent;
+
   const targetColumn = e.target.closest('.todo-column');
   if (targetColumn) {
     targetColumn.style.backgroundColor = '#ffffff'; // 강조된 영역 해제
@@ -43,4 +53,7 @@ export const dropCard = (e) => {
       lastTarget = null; // 초기화
     }
   }
+
+  moveCardToLocalStorage(targetColumn.dataset.column, title, content, date);
+  deleteCardFromLocalStorage(prevCol.dataset.column, prevInd);
 };

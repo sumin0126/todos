@@ -109,7 +109,7 @@ export const loadCardsFromLocalStorage = () => {
   const todos = getTodosFromLocalStorage();
 
   Object.entries(todos).forEach(([key, val]) => {
-    const targetColumn = [...document.querySelectorAll('.todo-column')].filter((res) => res.dataset.column === key);
+    const targetColumn = [...document.querySelectorAll('.todo-column')].find((res) => res.dataset.column === key);
 
     val.forEach((card) => {
       const title = card.title;
@@ -126,7 +126,7 @@ export const loadCardsFromLocalStorage = () => {
         newCard.querySelector('.card-content').innerHTML = content;
       }
 
-      targetColumn[0].appendChild(newCard);
+      targetColumn.appendChild(newCard);
       addCardEvents(newCard);
     });
   });

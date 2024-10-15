@@ -1,14 +1,6 @@
 import { createNewCard, loadCardsFromLocalStorage } from './card.js';
-import { createNewColumn, openDeleteColumnModal, addColumnDragEvents } from './column.js';
+import { createNewColumn, openDeleteColumnModal, addColumnDragEvents, loadColumnsFromLocalStorage } from './column.js';
 import { closeModal, openInputModal } from './modal.js';
-import {
-  getTodosFromLocalStorage,
-  setTodosToLocalStorage,
-  addNewColumnToLocalStorage,
-  deleteColumnFromLocalStorage,
-  addNewCardToLocalStorage,
-  deleteCardFromLocalStorage,
-} from './storage.js';
 
 /* 새카드 생성해주는 이벤트 */
 const addBtns = document.querySelectorAll('.add-card');
@@ -50,10 +42,8 @@ const handleNavBarCloseClick = () => {
 };
 
 document.querySelector('.fa-bars').addEventListener('click', () => handleNavBarOpenClick());
-
 document.querySelector('.close-navbar').addEventListener('click', () => handleNavBarCloseClick());
-
 document.querySelector('.navbar-bg').addEventListener('click', () => handleNavBarCloseClick());
 
-console.log(getTodosFromLocalStorage());
+loadColumnsFromLocalStorage();
 loadCardsFromLocalStorage();

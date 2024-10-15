@@ -55,6 +55,23 @@ export const addNewCardToLocalStorage = (columnName, date) => {
 };
 
 /**
+ *  드래그하여 이동된 카드 정보를 todos 로컬스토리지에 저장하는 함수
+ */
+export const moveCardToLocalStorage = (columnName, title, content, date) => {
+  const todos = getTodosFromLocalStorage();
+  const newTodos = todos;
+
+  const card = {
+    title,
+    content,
+    date,
+  };
+
+  newTodos[columnName].push(card);
+  setTodosToLocalStorage(newTodos);
+};
+
+/**
  *  카드 정보를 todos 로컬스토리지에서 삭제하는 함수
  */
 export const deleteCardFromLocalStorage = (columnName, cardIndex) => {
