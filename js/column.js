@@ -2,6 +2,7 @@ import { createNewCard } from './card.js';
 import { generateColumnTemplate } from './template.js';
 import { openConfirmModal, closeModal } from './modal.js';
 import { dragStart, dragEnter, dragLeave, dragOver, dropCard } from './drag.js';
+import { deleteColumnFromLocalStorage, addNewColumnToLocalStorage, getTodosFromLocalStorage } from './storage.js';
 
 /**
  *  컬럼 생성 함수
@@ -15,6 +16,7 @@ export const createNewColumn = (title) => {
   columnTemplate.querySelector('.delete-column').addEventListener('click', openDeleteColumnModal);
 
   addColumnDragEvents(columnTemplate);
+  addNewColumnToLocalStorage(title);
 };
 
 export const addColumnDragEvents = (column) => {
@@ -34,6 +36,21 @@ export const openDeleteColumnModal = (e) => {
  */
 export const deleteColumn = (e) => {
   const targetColumn = e.target.closest('.todo-column');
+  const columnName = targetColumn.dataset.column;
 
   targetColumn.remove();
+  deleteColumnFromLocalStorage(columnName);
+};
+
+/**
+ * todos 로컬스토리지에서 컬럼 정보를 받아와 화면에 그려주는 함수
+ * (화면을 새로고침해도 이전 데이터들이 안사라지고 남아있음)
+ */
+
+export const loadColumnsFromLocalStorage = () => {
+  const todos = getTodosFromLocalStorage();
+
+  Object.keys(todos).forEach((column) => {
+    createNewColumn(column);
+  });
 };

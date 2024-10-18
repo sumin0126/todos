@@ -1,6 +1,11 @@
 import { generateCardTemplate } from './template.js';
 import { openConfirmModal, closeModal } from './modal.js';
-import { deleteCardFromLocalStorage, updateCardToLocalStorage } from './storage.js';
+import {
+  deleteCardFromLocalStorage,
+  updateCardToLocalStorage,
+  addNewCardToLocalStorage,
+  getTodosFromLocalStorage,
+} from './storage.js';
 
 const ENTER_KEY_CODE = 13;
 
@@ -14,9 +19,11 @@ export const createNewCard = (e) => {
 
   const cardTemplate = generateCardTemplate(koreanDate);
   const targetColumn = e.target.closest('.todo-column');
+  const columnName = targetColumn.dataset.column;
 
   targetColumn.appendChild(cardTemplate);
   addCardEvents(cardTemplate);
+  addNewCardToLocalStorage(columnName, koreanDate);
 };
 
 /**
@@ -24,8 +31,10 @@ export const createNewCard = (e) => {
  */
 export const addCardEvents = (card) => {
   card.querySelector('.delete-card').addEventListener('click', openDeleteCardModal);
-  card.querySelector('.input-title').addEventListener('keypress', handlePressInput);
-  card.querySelector('.input-content').addEventListener('keypress', handlePressInput);
+  card.querySelector('.input-title') &&
+    card.querySelector('.input-title').addEventListener('keypress', handlePressInput);
+  card.querySelector('.input-content') &&
+    card.querySelector('.input-content').addEventListener('keypress', handlePressInput);
   card.querySelector('.card-title-name').addEventListener('dblclick', handleDoubleClick);
   card.querySelector('.card-content').addEventListener('dblclick', handleDoubleClick);
 };
@@ -90,4 +99,35 @@ const handleDoubleClick = (e) => {
 
   // 엔터 키 입력 시 다시 텍스트로 변경
   inputField.addEventListener('keypress', handlePressInput);
+};
+
+/**
+ * todos 로컬스토리지에서 카드 정보를 받아와 화면에 그려주는 함수
+ * (화면을 새로고침해도 이전 데이터들이 안사라지고 남아있음)
+ */
+export const loadCardsFromLocalStorage = () => {
+  const todos = getTodosFromLocalStorage();
+
+  Object.entries(todos).forEach(([key, val]) => {
+    const targetColumn = [...document.querySelectorAll('.todo-column')].find((res) => res.dataset.column === key);
+
+    val.forEach((card) => {
+      const title = card.title;
+      const content = card.content;
+      const date = card.date;
+
+      const newCard = generateCardTemplate(date);
+
+      if (title !== '') {
+        newCard.querySelector('.card-title-name').innerHTML = title;
+      }
+
+      if (content !== '') {
+        newCard.querySelector('.card-content').innerHTML = content;
+      }
+
+      targetColumn.appendChild(newCard);
+      addCardEvents(newCard);
+    });
+  });
 };
